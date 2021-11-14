@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "./../libft/libft.h"
 
 typedef struct s_stack
@@ -25,10 +26,16 @@ typedef struct s_stack
 }		t_stack;
 
 t_stack		*create_stack(int capacity);
-void		push(t_stack *stack, int value);
-void		pop(t_stack *stack);
+void		s_push(t_stack *stack, int value);
+void		s_pop(t_stack *stack);
 int			ret_stack_value(t_stack *stack);
-
-
+void		parse_args(char **ar, int argc);
+int			check_dig_arg(char *str);
+void		push_argsToStack(t_stack *s, char **arg, int argc);
+void    	operation_sa_sb(t_stack *stack, char *op_name);
+void		operation_pa_pb(t_stack *stack_a, t_stack *stack_b, char *op_name);
+void    	operation_ra_rb(t_stack *stack, char *op_name);
+void    	operation_rra_rrb(t_stack *stack, char *op_name);
+void    	ft_exitError(void);
 
 #endif

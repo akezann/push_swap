@@ -33,19 +33,29 @@ void		parse_args(char **ar, int argc)
 	i = 1;
 	while (ar[i] && i < argc)
 	{
-		if (!check_dig_arg(ar[i]))
+		if (!check_dig_arg(ar[i]) ||
+			(ft_strlen(ar[i]) == 10 && ft_strncmp(ar[i], "2147483647", 10) < 0) ||
+			(ft_strlen(ar[i]) == 11 && ft_strncmp(ar[i], "-2147483648", 11) > 0) ||
+			ft_strlen(ar[i]) > 11)
 		{
-			printf("Error: check digity of args.\n");
-			exit(0);
-		} else {
-			printf("arg number %d is :  %d\n", i, ft_atoi(ar[i]));
+			ft_exitError();
 		}
 		i++;
 	}
 }
 
-int main(int argc, char **ar)
+void		push_argsToStack(t_stack *s, char **arg, int argc)
 {
-	parse_args(ar, argc);
-	return 0;
+	int i;
+
+	i = argc - 1;
+	parse_args(arg, argc);
+	while (i > 0)
+	{
+		if (arg[i] )
+			s_push(s, ft_atoi(arg[i]));
+		else
+			ft_exitError();
+		i--;
+	}
 }

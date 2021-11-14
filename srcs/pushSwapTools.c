@@ -45,3 +45,15 @@ int		ret_stack_value(t_stack *stack)
 {
 	return (stack->array[stack->top]);
 }
+
+int main(int argc, char **argv)
+{
+	t_stack *a = create_stack(argc - 1);
+	push_argsToStack(a, argv, argc);
+	//operation_ra_rb(a, "ra");
+	while (a->top > -1)
+	{
+		printf("%d\n", a->array[a->top--]);
+	}
+	return 0;
+}
