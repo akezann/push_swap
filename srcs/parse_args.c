@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:10:05 by akezanna          #+#    #+#             */
-/*   Updated: 2021/09/26 15:41:09 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/11/30 18:38:42 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void		push_argsToStack(t_stack *s, char **arg, int argc)
 	int i;
 
 	i = argc - 1;
-	parse_args(arg, argc);
 	while (i > 0)
 	{
 		if (arg[i] )
@@ -57,5 +56,23 @@ void		push_argsToStack(t_stack *s, char **arg, int argc)
 		else
 			ft_exitError();
 		i--;
+	}
+}
+
+void		pushArgsToArray(t_array *arr, char **arg, int argc)
+{
+	int i;
+	int j; 
+
+	i = 1;
+	j = 0;
+	arr->array = malloc(sizeof(int) * argc - 1);
+	while (i < argc)
+	{
+		if (arg[i])
+			arr->array[j++] = ft_atoi(arg[i]);
+		else
+			ft_exitError();
+		i++;
 	}
 }

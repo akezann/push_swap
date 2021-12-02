@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:12:31 by akezanna          #+#    #+#             */
-/*   Updated: 2021/09/26 15:14:23 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/01 22:14:57 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,28 @@ typedef struct s_stack
 	int	*array;
 }		t_stack;
 
+typedef struct s_array
+{
+	int	*array;
+	int *lisContent;
+}		t_array;
+
+typedef struct s_instucts
+{
+	int	len_a;
+	int	len_b;
+	int	*arr_of_a;
+	int *arr_of_b;
+	int	median_a;
+	int	median_b;
+	int	a_up;
+	int	a_down;
+	int	b_up;
+	int	b_down;
+}		t_instructs;
+
+void    exec_algorithme(t_stack *a, t_stack *b, t_instructs *inst);
+void     fill_arrays(t_stack *a, t_stack *b, t_instructs *inst);
 t_stack		*create_stack(int capacity);
 void		s_push(t_stack *stack, int value);
 void		s_pop(t_stack *stack);
@@ -37,5 +59,14 @@ void		operation_pa_pb(t_stack *stack_a, t_stack *stack_b, char *op_name);
 void    	operation_ra_rb(t_stack *stack, char *op_name);
 void    	operation_rra_rrb(t_stack *stack, char *op_name);
 void    	ft_exitError(void);
+void		sortStackOfThree(t_stack *stack, char *op);
+void		pushArgsToArray(t_array *arr, char **arg, int argc);
+void		quickSort(int *array, int low, int high);
+void		stackPartition(t_array *arr, t_stack *a, t_stack *b, int argc);
+int     	*ft_lis(int *arr, int n);
+int    		*insert_lis(int *arr, int len);
+int     	get_max(int *lis, int len);
+int        	check_element_existence(int *arr, int element, int len);
+void		get_number_of_instructions(t_stack *a, t_stack *b, t_instructs *inst);
 
 #endif

@@ -55,7 +55,7 @@ void    operation_ra_rb(t_stack *stack, char *op_name)
         s_push(stack, tmp_stack->array[tmp_stack->top]);
         tmp_stack->top--;
     }
-    printf("%s\n", op_name);
+   printf("%s\n", op_name);
 }
 
 void    operation_rra_rrb(t_stack *stack, char *op_name)
