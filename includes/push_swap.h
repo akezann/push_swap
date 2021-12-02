@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:12:31 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/01 22:14:57 by ak1337           ###   ########.fr       */
+/*   Updated: 2021/12/02 17:46:11 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_instucts
 	int	a_down;
 	int	b_up;
 	int	b_down;
+	int	min_index;
 }		t_instructs;
 
 void    exec_algorithme(t_stack *a, t_stack *b, t_instructs *inst);
@@ -68,5 +69,6 @@ int    		*insert_lis(int *arr, int len);
 int     	get_max(int *lis, int len);
 int        	check_element_existence(int *arr, int element, int len);
 void		get_number_of_instructions(t_stack *a, t_stack *b, t_instructs *inst);
+void     	the_min_in_stack(t_stack *a, t_stack *b, t_instructs *inst);
 
 #endif

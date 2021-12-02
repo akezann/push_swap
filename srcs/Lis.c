@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Lis.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 12:39:55 by ak1337            #+#    #+#             */
-/*   Updated: 2021/11/30 19:40:14 by ak1337           ###   ########.fr       */
+/*   Updated: 2021/12/02 17:28:03 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ int     *insert_lis(int *arr, int len)
 
 // int main()
 // {
-//     int tab[8] = {5, 2, 8, 6, 3, 6, 9,7};
+//     int tab[7] = {-1, -800, -200, -98, 95, 100, 88};
 //     int *lis;
-//     lis = insert_lis(tab, 8);
+//     lis = insert_lis(tab, 7);
     
 //     int i = 0;
-//     while (i < get_max(ft_lis(tab, 8), 8))
+//     while (i < get_max(ft_lis(tab, 7), 7))
 //     {
 //         printf("|%d|", lis[i++]);
 //     }

@@ -1,4 +1,4 @@
-name = push_swap
+NAME = push_swap
 
 CC = gcc
 #CFLAGS = -Wall -Wextra -Werror
@@ -9,10 +9,10 @@ DEFS = ./includes/push_swap.h
 OBJ = srcs/push_swap.o srcs/pushSwapTools.o srcs/parse_args.o srcs/operations.o srcs/checkErrors.o srcs/utils.o srcs/quickSort.o srcs/Lis.o\
 		srcs/algorithm.o
 
-all: $(name)
+all: $(NAME)
 
-$(name): $(LIBFT) $(OBJ) $(DEFS)
-		$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(name)
+$(NAME): $(LIBFT) $(OBJ) $(DEFS)
+		$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 $(LIBFT): force
 		make -C $(LIBFT_DIR)
@@ -24,7 +24,7 @@ clean:
 	rm -f $(OBJ)
 fclean:
 	make clean -C $(LIBFT_DIR)
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(NAME)
 re:
 	make fclean
 	make
