@@ -6,7 +6,7 @@
 /*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:12:15 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/02 19:37:28 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/03 19:21:13 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,17 @@ int main(int argc, char **argv)
 	pushArgsToArray(&arr, argv, argc);
 	arr.lisContent = insert_lis(arr.array, argc);
 	lis = ft_lis(arr.array, argc - 1);
+	int i = 0;
+	while (i < argc - 1)
+	{
+		printf("|%d|", lis[i++]);
+	}
+	printf("\n");
+	while (i < get_max(lis, argc -1))
+	{
+		printf("|%d|", arr.lisContent[i++]);
+	}
+	
 	int c = a->top;
 	while (c > -1)
 	{
@@ -66,13 +77,12 @@ int main(int argc, char **argv)
 			operation_pa_pb(a, b, "pb");
 		c--;
 	}
-
+	
 	exec_algorithme(a, b, &inst);
 	printf("\n");
 	while (a->top > -1)
 	{
 		printf("|%d|", a->array[a->top--]);
 	}
-	printf("\n");
 	return 0;
 }

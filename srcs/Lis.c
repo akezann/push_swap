@@ -6,7 +6,7 @@
 /*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 12:39:55 by ak1337            #+#    #+#             */
-/*   Updated: 2021/12/02 17:28:03 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/03 19:23:34 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int     get_max(int *lis, int len)
 {
     int max = lis[0];
     int i = 1;
-    while (i < len )
+    while (i < len)
     {
         if (lis[i] > max)
             max = lis[i];
@@ -25,13 +25,12 @@ int     get_max(int *lis, int len)
     return max;
 }
 
-int     check_for_double(int *arr, int element, int start, int len)
+int     check_for_double(int *arr, int k, int len, int max)
 {
-    while (start < len)
+    int i = 0;
+    while (i < len)
     {
-        if (arr[start] == element)
-            return (1);
-        start++;
+        
     }
     return (0);
 }
