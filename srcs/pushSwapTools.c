@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushSwapTools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:12:15 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/03 19:21:13 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/05 01:40:19 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,31 +58,41 @@ int main(int argc, char **argv)
 	arr.lisContent = insert_lis(arr.array, argc);
 	lis = ft_lis(arr.array, argc - 1);
 	int i = 0;
+	printf("\n");
 	while (i < argc - 1)
 	{
 		printf("|%d|", lis[i++]);
 	}
 	printf("\n");
+	i = 0;
 	while (i < get_max(lis, argc -1))
 	{
 		printf("|%d|", arr.lisContent[i++]);
 	}
-	
-	int c = a->top;
-	while (c > -1)
-	{
-		if (check_element_existence(arr.lisContent, a->array[a->top],  get_max(lis, argc - 1)))
-			operation_ra_rb(a, "ra");
-		else
-			operation_pa_pb(a, b, "pb");
-		c--;
-	}
-	
-	exec_algorithme(a, b, &inst);
 	printf("\n");
 	while (a->top > -1)
 	{
 		printf("|%d|", a->array[a->top--]);
 	}
+	int c = a->top;
+	while (c > -1)
+	{
+		if (check_element_existence(arr.lisContent, a->array[a->top],   get_max(lis, argc -1)))
+			operation_ra_rb(a, "ra");
+		else
+			operation_pa_pb(a, b, "pb");
+		c--;
+	}
+	printf("\n");
+	while (a->top > -1)
+	{
+		printf("|%d|", a->array[a->top--]);
+	}
+	// exec_algorithme(a, b, &inst);
+	// // printf("\n");
+	// // while (a->top > -1)
+	// // {
+	// // 	printf("|%d|", a->array[a->top--]);
+	// // }
 	return 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Lis.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 12:39:55 by ak1337            #+#    #+#             */
-/*   Updated: 2021/12/03 19:23:34 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/05 01:36:05 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,30 @@ int     get_max(int *lis, int len)
     return max;
 }
 
-int     check_for_double(int *arr, int k, int len, int max)
+int     check_for_double(int *arr, int k, int max)
 {
-    int i = 0;
-    while (i < len)
+    int j = 0;
+    
+    while (j < max)
     {
-        
+        if (arr[j] < k)
+            return (1);
+        j++;
     }
     return (0);
+}
+
+int     get_pos(int *arr, int k, int len, int max)
+{
+    int i = 0;
+    int pos;
+    while (i < len)
+    {
+        if (arr[i] == k && check_for_double(arr, k, i))
+            pos = i;
+        i++;
+    }
+    return (pos);
 }
 
 int     *ft_lis(int *arr, int n)
@@ -61,32 +77,16 @@ int     *insert_lis(int *arr, int len)
     int max = get_max(lis, len);
     int *lisContent;
     lisContent = malloc(sizeof(int) * max);
+    int pos;
     int i = 0;
     int j = 0;
     int k = 1;
-    while (i < len)
+    int c = 1;
+    while (k <= max)
     {
-        while (lis[i] == lis[i + 1])
-            i++;
-        if (lis[i] == k)
-        {
-            k++;
-            lisContent[j++] = arr[i];
-        }
-        i++;
+        pos = get_pos(lis, k, len, max);
+        lisContent[j++] = arr[pos];
+        k++;
     }
     return (lisContent);
 }
-
-// int main()
-// {
-//     int tab[7] = {-1, -800, -200, -98, 95, 100, 88};
-//     int *lis;
-//     lis = insert_lis(tab, 7);
-    
-//     int i = 0;
-//     while (i < get_max(ft_lis(tab, 7), 7))
-//     {
-//         printf("|%d|", lis[i++]);
-//     }
-// }
