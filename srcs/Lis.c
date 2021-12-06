@@ -6,7 +6,7 @@
 /*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 12:39:55 by ak1337            #+#    #+#             */
-/*   Updated: 2021/12/05 01:36:05 by ak1337           ###   ########.fr       */
+/*   Updated: 2021/12/06 03:16:56 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,23 @@ int     check_for_double(int *arr, int k, int max)
     
     while (j < max)
     {
-        if (arr[j] < k)
-            return (1);
+        if (arr[j] > k)
+            return (0);
         j++;
     }
-    return (0);
+    return (1);
 }
 
-int     get_pos(int *arr, int k, int len, int max)
+int     get_pos(int *arr, int k, int len)
 {
-    int i = 0;
-    int pos;
-    while (i < len)
+    int i = len - 1;
+    int pos = 0;
+    while (i > -1)
     {
-        if (arr[i] == k && check_for_double(arr, k, i))
-            pos = i;
-        i++;
+        if (arr[i] == k)
+            return pos;
+        i--;
     }
-    return (pos);
 }
 
 int     *ft_lis(int *arr, int n)
@@ -78,15 +77,19 @@ int     *insert_lis(int *arr, int len)
     int *lisContent;
     lisContent = malloc(sizeof(int) * max);
     int pos;
-    int i = 0;
+    int i = len - 1;
     int j = 0;
-    int k = 1;
+    int k = max;
     int c = 1;
-    while (k <= max)
+    lisContent[0] = arr[0];
+    while (i > -1)
     {
-        pos = get_pos(lis, k, len, max);
-        lisContent[j++] = arr[pos];
-        k++;
+        if (lis[i] == k)
+        {
+            lisContent[j++] = arr[i];
+            k--;
+        }
+        i--;
     }
     return (lisContent);
 }

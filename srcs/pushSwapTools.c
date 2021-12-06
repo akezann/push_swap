@@ -6,7 +6,7 @@
 /*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:12:15 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/05 01:40:19 by ak1337           ###   ########.fr       */
+/*   Updated: 2021/12/06 03:17:40 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,25 @@ int main(int argc, char **argv)
 	int		*lis;
 	push_argsToStack(a, argv, argc);
 	pushArgsToArray(&arr, argv, argc);
-	arr.lisContent = insert_lis(arr.array, argc);
+	arr.lisContent = insert_lis(arr.array, argc - 1);
 	lis = ft_lis(arr.array, argc - 1);
 	int i = 0;
-	printf("\n");
-	while (i < argc - 1)
-	{
-		printf("|%d|", lis[i++]);
-	}
-	printf("\n");
-	i = 0;
-	while (i < get_max(lis, argc -1))
-	{
-		printf("|%d|", arr.lisContent[i++]);
-	}
-	printf("\n");
-	while (a->top > -1)
-	{
-		printf("|%d|", a->array[a->top--]);
-	}
+	// printf("\n");
+	// while (i < argc - 1)
+	// {
+	// 	printf("|%d|", lis[i++]);
+	// }
+	// printf("\n");
+	// i = 0;
+	// while (i < get_max(lis, argc -1))
+	// {
+	// 	printf("|%d|", arr.lisContent[i++]);
+	// }
+	// printf("\n");
+	// while (a->top > -1)
+	// {
+	// 	printf("|%d|", a->array[a->top--]);
+	// }
 	int c = a->top;
 	while (c > -1)
 	{
@@ -83,16 +83,16 @@ int main(int argc, char **argv)
 			operation_pa_pb(a, b, "pb");
 		c--;
 	}
-	printf("\n");
-	while (a->top > -1)
-	{
-		printf("|%d|", a->array[a->top--]);
-	}
-	// exec_algorithme(a, b, &inst);
-	// // printf("\n");
-	// // while (a->top > -1)
-	// // {
-	// // 	printf("|%d|", a->array[a->top--]);
-	// // }
-	return 0;
+// 	// printf("\n");
+// 	// while (a->top > -1)
+// 	// {
+// 	// 	printf("|%d|", a->array[a->top--]);
+// 	// }
+	exec_algorithme(a, b, &inst);
+// 	printf("\n");
+// 	while (a->top > -1)
+// 	{
+// 		printf("|%d|", a->array[a->top--]);
+// 	}
+// 	return 0;
 }
