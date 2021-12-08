@@ -53,11 +53,16 @@ void     get_number_of_instructions(t_stack *a, t_stack *b, t_instructs *inst)
         if (b->array[b->top] > a->array[i] && b->array[b->top] < a->array[i - 1])
         {
             inst->a_up = backup_a - i + 1;
-            inst->a_down = i - 1 + 1;
+            //inst->a_down = inst->len_a - i - 1;
+        }
+        else if (b->array[b->top] < a->array[i] && b->array[b->top] > a->array[i - 1])
+        {
+            inst->a_up = backup_a - i - 1;
+            //inst->a_down = inst->len_a - i - 1;
         }
         i--;
     }
-   a->top = backup_a;
+    a->top = backup_a;
 }
 
 void    exec_algorithme(t_stack *a, t_stack *b, t_instructs *inst)
@@ -68,52 +73,29 @@ void    exec_algorithme(t_stack *a, t_stack *b, t_instructs *inst)
     {
         fill_arrays(a, b, inst);
         get_number_of_instructions(a, b, inst);
+        
         i = 0;
-        if (inst->a_up < inst->a_down)
-        {
+       // if (inst->a_up < inst->a_down)
             while (i < inst->a_up)
             {
                 operation_ra_rb(a, "ra");
                 i++;
             }
-        }
-        else
-        { 
-             while (i < inst->a_down)
-            {
-                operation_rra_rrb(a, "rra");
-                i++;
-            }
-            
-        }
-        operation_pa_pb(a,b,"pa");
-        the_min_in_stack(a, b, inst);
-        i = 0;
-        if ((inst->len_a - inst->min_index < inst->min_index))
-            while (i < inst->len_a - inst->min_index)
-            {
-                operation_rra_rrb(a, "rra");
-                i++;
-            }
-        else
-            while (i < inst->min_index)
-            {
-                operation_ra_rb(a, "ra");
-                i++;
-            }
+    //
+        operation_pa_pb(a, b, "pa");
     }
-    // the_min_in_stack(a, b, inst);
-    // i = 0;
-    // if ((inst->len_a - inst->min_index < inst->min_index))
-    //     while (i < inst->len_a - inst->min_index)
-    //     {
-    //         operation_rra_rrb(a, "rra");
-    //         i++;
-    //     }
-    // else
-    //     while (i < inst->min_index)
-    //     {
-    //         operation_ra_rb(a, "ra");
-    //         i++;
-    //     }
+     the_min_in_stack(a, b, inst);
+    i = 0;
+    if ((inst->len_a - inst->min_index < inst->min_index))
+        while (i < inst->len_a - inst->min_index)
+        {
+            operation_rra_rrb(a, "rra");
+            i++;
+        }
+    else
+        while (i < inst->min_index)
+        {
+            operation_ra_rb(a, "ra");
+            i++;
+        }
 }
