@@ -6,7 +6,7 @@
 /*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:12:31 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/02 17:46:11 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/10 17:07:28 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,19 @@ typedef struct s_instucts
 	int	len_b;
 	int	*arr_of_a;
 	int *arr_of_b;
-	int	median_a;
-	int	median_b;
+	int	total;
 	int	a_up;
 	int	a_down;
 	int	b_up;
 	int	b_down;
+	int	a_move;
+	int	b_move;
+	int found;
 	int	min_index;
+	int max_index;
 }		t_instructs;
 
+void    push_to_b(t_stack *a, t_stack *b, t_instructs *inst);
 void    exec_algorithme(t_stack *a, t_stack *b, t_instructs *inst);
 void     fill_arrays(t_stack *a, t_stack *b, t_instructs *inst);
 t_stack		*create_stack(int capacity);

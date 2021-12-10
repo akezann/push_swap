@@ -6,7 +6,7 @@
 /*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 12:39:55 by ak1337            #+#    #+#             */
-/*   Updated: 2021/12/03 19:23:34 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/06 11:29:54 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,6 @@ int     get_max(int *lis, int len)
         i++;
     }
     return max;
-}
-
-int     check_for_double(int *arr, int k, int len, int max)
-{
-    int i = 0;
-    while (i < len)
-    {
-        
-    }
-    return (0);
 }
 
 int     *ft_lis(int *arr, int n)
@@ -61,32 +51,20 @@ int     *insert_lis(int *arr, int len)
     int max = get_max(lis, len);
     int *lisContent;
     lisContent = malloc(sizeof(int) * max);
-    int i = 0;
+    int pos;
+    int i = len - 1;
     int j = 0;
-    int k = 1;
-    while (i < len)
+    int k = max;
+    int c = 1;
+    lisContent[0] = arr[0];
+    while (i > -1)
     {
-        while (lis[i] == lis[i + 1])
-            i++;
         if (lis[i] == k)
         {
-            k++;
             lisContent[j++] = arr[i];
+            k--;
         }
-        i++;
+        i--;
     }
     return (lisContent);
 }
-
-// int main()
-// {
-//     int tab[7] = {-1, -800, -200, -98, 95, 100, 88};
-//     int *lis;
-//     lis = insert_lis(tab, 7);
-    
-//     int i = 0;
-//     while (i < get_max(ft_lis(tab, 7), 7))
-//     {
-//         printf("|%d|", lis[i++]);
-//     }
-// }
