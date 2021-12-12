@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:10:05 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/03 17:19:38 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/10 23:03:13 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		parse_args(char **ar, int argc)
 	}
 }
 
-void		push_argsToStack(t_stack *s, char **arg, int argc)
+void		push_args_to_stack(t_stack *s, char **arg, int argc)
 {
 	int i;
 
@@ -59,7 +59,7 @@ void		push_argsToStack(t_stack *s, char **arg, int argc)
 	}
 }
 
-void		pushArgsToArray(t_array *arr, char **arg, int argc)
+void		push_args_to_array(t_array *arr, char **arg, int argc)
 {
 	int i;
 	int j; 

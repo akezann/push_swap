@@ -6,7 +6,7 @@ LIBFT =	./libft/libft.a
 LIBFT_DIR =	./libft
 DEFS = ./includes/push_swap.h
 
-OBJ = srcs/push_swap.o srcs/pushSwapTools.o srcs/parse_args.o srcs/operations.o srcs/checkErrors.o srcs/utils.o srcs/quickSort.o srcs/Lis.o\
+OBJ = srcs/push_swap.o srcs/pushSwapTools.o srcs/parse_args.o srcs/operations.o srcs/checkErrors.o srcs/utils.o srcs/Lis.o\
 		srcs/algorithm.o
 
 all: $(NAME)

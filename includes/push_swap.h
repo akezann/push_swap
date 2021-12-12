@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:12:31 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/10 17:07:28 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/12 01:29:12 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,25 @@ typedef struct s_instucts
 	int max_index;
 }		t_instructs;
 
-void    push_to_b(t_stack *a, t_stack *b, t_instructs *inst);
-void    exec_algorithme(t_stack *a, t_stack *b, t_instructs *inst);
-void     fill_arrays(t_stack *a, t_stack *b, t_instructs *inst);
+void    	push_to_b(t_stack *a, t_stack *b, t_instructs *inst);
 t_stack		*create_stack(int capacity);
 void		s_push(t_stack *stack, int value);
 void		s_pop(t_stack *stack);
-int			ret_stack_value(t_stack *stack);
 void		parse_args(char **ar, int argc);
 int			check_dig_arg(char *str);
-void		push_argsToStack(t_stack *s, char **arg, int argc);
+void		push_args_to_stack(t_stack *s, char **arg, int argc);
 void    	operation_sa_sb(t_stack *stack, char *op_name);
 void		operation_pa_pb(t_stack *stack_a, t_stack *stack_b, char *op_name);
 void    	operation_ra_rb(t_stack *stack, char *op_name);
 void    	operation_rra_rrb(t_stack *stack, char *op_name);
+void		operation_rr_rrr(t_stack *a, t_stack *b, char *op_name);
 void    	ft_exitError(void);
-void		sortStackOfThree(t_stack *stack, char *op);
-void		pushArgsToArray(t_array *arr, char **arg, int argc);
-void		quickSort(int *array, int low, int high);
-void		stackPartition(t_array *arr, t_stack *a, t_stack *b, int argc);
+void		push_args_to_array(t_array *arr, char **arg, int argc);
 int     	*ft_lis(int *arr, int n);
 int    		*insert_lis(int *arr, int len);
 int     	get_max(int *lis, int len);
 int        	check_element_existence(int *arr, int element, int len);
-void		get_number_of_instructions(t_stack *a, t_stack *b, t_instructs *inst);
-void     	the_min_in_stack(t_stack *a, t_stack *b, t_instructs *inst);
+int         is_sorted(t_stack *a);
+void    start_sorting(t_stack *a, t_stack *b, t_instructs *inst);
 
 #endif

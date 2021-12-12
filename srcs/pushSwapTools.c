@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushSwapTools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:12:15 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/10 17:12:53 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/12 01:36:10 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,39 +41,33 @@ void	s_pop(t_stack *stack)
 	stack->top--;
 }
 
-int		ret_stack_value(t_stack *stack)
-{
-	return (stack->array[stack->top]);
-}
-
 int main(int argc, char **argv)
 {
 	t_stack *a = create_stack(argc - 1);
 	t_stack *b = create_stack(argc - 1);
+	char	**split;
 	t_instructs inst;
 	t_array arr;
 	int		*lis;
-	push_argsToStack(a, argv, argc);
-	pushArgsToArray(&arr, argv, argc);
+	
+	// if (argc == 2 && ft_strchr(argv[1], ' '))
+	// {
+	// 	split = ft_split(argv[1], " ");
+	// 	int i = 0;
+	// 	while (split[i])
+	// 		i++;
+	// 	push_args_to_stack(a, split, i + 1);
+	// 	push_args_to_array(&arr, split, i);	
+	// }
+	// else
+	// {
+		push_args_to_stack(a, argv, argc);
+		push_args_to_array(&arr, argv, argc);
+	// }
+	if (is_sorted(a))
+		return (0);
 	arr.lisContent = insert_lis(arr.array, argc - 1);
 	lis = ft_lis(arr.array, argc - 1);
-	int i = 0;
-	// printf("\n");
-	// while (i < argc - 1)
-	// {
-	// 	printf("|%d|", lis[i++]);
-	// }
-	// printf("\n");
-	// i = 0;
-	// while (i < get_max(lis, argc -1))
-	// {
-	// 	printf("|%d|", arr.lisContent[i++]);
-	// }
-	// printf("\n");
-	// while (a->top > -1)
-	// {
-	// 	printf("|%d|", a->array[a->top--]);
-	// }
 	int c = a->top;
 	while (c > -1)
 	{
@@ -83,16 +77,8 @@ int main(int argc, char **argv)
 			operation_pa_pb(a, b, "pb");
 		c--;
 	}
-	// printf("\n");
-	// while (a->top > -1)
-	// {
-	// 	printf("|%d|", a->array[a->top--]);
-	// }
-	push_to_b(a, b, &inst);
-	// printf("\n");
-	// while (a->top > -1)
-	// {
-	// 	printf("|%d|", a->array[a->top--]);
-	// }
+	start_sorting(a, b, &inst);
+	while (a->top > -1)
+		printf("%d|", a->array[a->top--]);
 	return 0;
 }

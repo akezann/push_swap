@@ -12,35 +12,6 @@
 
 #include "./../includes/push_swap.h"
 
-void fill_arrays(t_stack *a, t_stack *b, t_instructs *inst)
-{
-    int len_a = a->top;
-    inst->len_a = len_a + 1;
-    int i = 0;
-    inst->arr_of_a = malloc(sizeof(int) * inst->len_a);
-    while (len_a > -1)
-    {
-        inst->arr_of_a[i++] = a->array[len_a--];
-    }
-}
-
-void the_min_in_stack(t_stack *a, t_stack *b, t_instructs *inst)
-{
-    fill_arrays(a, b, inst);
-    int min = inst->arr_of_a[0];
-    int i = 0;
-    inst->min_index = 0;
-    while (i < inst->len_a)
-    {
-        if (min > inst->arr_of_a[i])
-        {
-            min = inst->arr_of_a[i];
-            inst->min_index = i;
-        }
-        i++;
-    }
-}
-
 void sort_stack(t_stack *a)
 {
     int min = a->array[a->top];
@@ -94,25 +65,36 @@ void set_stack_a(t_stack *a, int up, int down)
 
     i = 0;
     if (up < down)
-        while (i++ < up)
+        while (i < up)
+        {
             operation_ra_rb(a, "ra");
+            i++;
+        }
     else
-        while (i++ < down)
+        while (i < down)
+        {
             operation_rra_rrb(a, "rra");
+            i++;
+        }
 }
 
-void push_to_a(t_stack *a, t_stack *b, int up, int down)
+void set_stack_b(t_stack *b, int up, int down)
 {
     int i;
 
     i = 0;
     if (up < down)
-        while (i++ < up)
+        while (i < up)
+        {
             operation_ra_rb(b, "rb");
+            i++;
+        }
     else
-        while (i++ < down)
+        while (i < down)
+        {
             operation_rra_rrb(b, "rrb");
-    operation_pa_pb(a, b, "pa");
+            i++;
+        }
 }
 
 void scan_stack_b(t_stack *a, t_stack *b, t_instructs *inst)
@@ -123,13 +105,13 @@ void scan_stack_b(t_stack *a, t_stack *b, t_instructs *inst)
     int adown = 0;
     int bup = 0;
     int bdown = 0;
+    int total = 0;
     inst->a_up = 0;
     inst->a_down = 0;
     inst->b_up = 0;
     inst->b_down = 0;
-    j = a->top;
     inst->total = a->top + b->top;
-
+    j = a->top;
     while (j > 0)
     {
         i = b->top;
@@ -137,18 +119,18 @@ void scan_stack_b(t_stack *a, t_stack *b, t_instructs *inst)
         {
             if (b->array[i] > a->array[j] && b->array[i] < a->array[j - 1])
             {
-                inst->found = 1;
                 aup = a->top - j + 1;
                 adown = j;
                 bup = b->top - i;
                 bdown = i + 1;
-                if (get_total(aup, adown, bup, bdown) < inst->total)
+                total = get_total(aup, adown, bup, bdown);
+                if (total < inst->total)
                 {
                     inst->a_up = aup;
                     inst->a_down = adown;
                     inst->b_up = bup;
                     inst->b_down = bdown;
-                    inst->total = get_total(aup, adown, bup, bdown);
+                    inst->total = total;
                 }
             }
             i--;
@@ -157,23 +139,23 @@ void scan_stack_b(t_stack *a, t_stack *b, t_instructs *inst)
     }
 }
 
-void push_to_b(t_stack *a, t_stack *b, t_instructs *inst)
+void    start_sorting(t_stack *a, t_stack *b, t_instructs *inst)
 {
     while (b->top > -1)
     {
         scan_stack_b(a, b, inst);
-            if (inst->a_up > 0 || inst->a_down > 0)
-            {
-                set_stack_a(a, inst->a_up, inst->a_down);
-                push_to_a(a, b, inst->b_up, inst->b_down);
-            }
-            else
-            {
-                sort_stack(a);
-                push_to_a(a, b, inst->b_up, inst->b_down);
-                if (a->array[a->top] > a->array[0])
-                    operation_ra_rb(a, "ra");
-            }
+        if (inst->a_up > 0 || inst->a_down > 0)
+        {
+            set_stack_a(a, inst->a_up, inst->a_down);
+            set_stack_b(b, inst->b_up, inst->b_down);
+            operation_pa_pb(a, b, "pa");
+        }
+        else
+        {
+            sort_stack(a);
+            set_stack_b(b, inst->b_up, inst->b_down);
+            operation_pa_pb(a, b, "pa");
+        }
     }
     sort_stack(a);
 }

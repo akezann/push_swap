@@ -12,7 +12,8 @@ void    operation_sa_sb(t_stack *stack, char *op_name)
         stack->array[stack->top] = stack->array[stack->top - 1];
         stack->array[stack->top - 1] = tmp;
     }
-    printf("%s\n", op_name);
+    if (ft_strlen(op_name) == 2)
+        printf("%s\n", op_name);
 }
 
 void    operation_pa_pb(t_stack *stack_a, t_stack *stack_b, char *op_name)
@@ -37,7 +38,8 @@ void    operation_pa_pb(t_stack *stack_a, t_stack *stack_b, char *op_name)
             s_pop(stack_a);
         }
     }
-    printf("%s\n", op_name);
+    if (ft_strlen(op_name) == 2)
+        printf("%s\n", op_name);
 }
 
 void    operation_ra_rb(t_stack *stack, char *op_name)
@@ -55,7 +57,8 @@ void    operation_ra_rb(t_stack *stack, char *op_name)
         s_push(stack, tmp_stack->array[tmp_stack->top]);
         tmp_stack->top--;
     }
-   printf("%s\n", op_name);
+    if (ft_strlen(op_name) == 2)
+        printf("%s\n", op_name);
 }
 
 void    operation_rra_rrb(t_stack *stack, char *op_name)
@@ -75,5 +78,22 @@ void    operation_rra_rrb(t_stack *stack, char *op_name)
         tmp_stack->top--;
     }
     s_push(stack, tmp);
-    printf("%s\n", op_name);
+    if (ft_strlen(op_name) == 3)
+        printf("%s\n", op_name);
+}
+
+void    operation_rr_rrr(t_stack *a, t_stack *b, char *op_name)
+{
+    if (ft_strlen(op_name) == 2)
+    {
+        operation_ra_rb(a, "");
+        operation_ra_rb(b, "");
+        printf("%s\n", op_name);
+    }
+    if (ft_strlen(op_name) == 3)
+    {
+        operation_rra_rrb(a, "");
+        operation_rra_rrb(b, "");
+        printf("%s\n", op_name);
+    }
 }

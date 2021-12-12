@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Lis.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 12:39:55 by ak1337            #+#    #+#             */
-/*   Updated: 2021/12/06 11:29:54 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/10 23:23:26 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,34 @@
 
 int     get_max(int *lis, int len)
 {
-    int max = lis[0];
-    int i = 1;
+    int max;
+    int i;
+    
+    max = lis[0];
+    i = 1;
     while (i < len)
     {
         if (lis[i] > max)
             max = lis[i];
         i++;
     }
-    return max;
+    return (max);
 }
 
-int     *ft_lis(int *arr, int n)
+int     *ft_lis(int *arr, int len)
 {
     int *lis;
-    lis = malloc(n * sizeof(int));
+    int i;
+    int j;
     
+    lis = malloc(len * sizeof(int));
     lis[0] = 1;
-    for (int i = 1; i < n; i++) {
+    i = 0;
+    while (++i < len)
+    {
         lis[i] = 1;
-        for (int j = 0; j < i; j++)
+        j = -1;
+        while (++j < i)
         {
             if (arr[i] > arr[j] && lis[i] < lis[j] + 1)
             {  
@@ -41,21 +49,24 @@ int     *ft_lis(int *arr, int n)
             }
         }
     }
-    return lis;
+    return (lis);
 }
 
 int     *insert_lis(int *arr, int len)
 {
     int *lis;
-    lis = ft_lis(arr, len);
-    int max = get_max(lis, len);
+    int max;
     int *lisContent;
+    int i;
+    int j;
+    int k;
+    
+    lis = ft_lis(arr, len);
+    max = get_max(lis, len);
     lisContent = malloc(sizeof(int) * max);
-    int pos;
-    int i = len - 1;
-    int j = 0;
-    int k = max;
-    int c = 1;
+    i = len - 1;
+    j = 0;
+    k = max;
     lisContent[0] = arr[0];
     while (i > -1)
     {
