@@ -1,13 +1,13 @@
 NAME = push_swap
 
 CC = gcc
-#CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 LIBFT =	./libft/libft.a
 LIBFT_DIR =	./libft
 DEFS = ./includes/push_swap.h
 
-OBJ = srcs/push_swap.o srcs/pushSwapTools.o srcs/parse_args.o srcs/operations.o srcs/checkErrors.o srcs/utils.o srcs/Lis.o\
-		srcs/algorithm.o
+OBJ = srcs/push_swap.o srcs/parse_args.o srcs/utils.o srcs/lis.o\
+		srcs/algorithm.o srcs/algo_utils.o srcs/operations.o
 
 all: $(NAME)
 
