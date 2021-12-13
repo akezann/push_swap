@@ -6,11 +6,20 @@
 /*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 20:08:23 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/12 20:09:39 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/13 20:35:28 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/push_swap.h"
+
+void	init_instructs(t_stack *a, t_stack *b, t_instructs *inst)
+{
+	inst->a_up = 0;
+	inst->a_down = 0;
+	inst->b_up = 0;
+	inst->b_down = 0;
+	inst->total = a->top + b->top;
+}
 
 int	check_element_existence(int *arr, int element, int len)
 {
@@ -44,4 +53,28 @@ int	is_sorted(t_stack *a)
 		i--;
 	}
 	return (1);
+}
+
+int	count_args(char **arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i])
+		i++;
+	return (i);
+}
+
+void	free_split(char **argv, int argc)
+{
+	int	i;
+
+	i = 0;
+	if (argc == 2)
+	{
+		while (argv[i])
+			free(argv[i++]);
+		free(argv);
+	}
+	return ;
 }

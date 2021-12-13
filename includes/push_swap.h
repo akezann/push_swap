@@ -6,7 +6,7 @@
 /*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:49:53 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/12 21:57:51 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/13 20:48:42 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,24 @@ typedef struct s_array
 {
 	int	*array;
 	int	*lis_content;
+	int	*lis;
 }		t_array;
 
-typedef struct s_instucts
+typedef struct s_instructs
 {
-	int	total;
-	int	a_up;
-	int	a_down;
-	int	b_up;
-	int	b_down;
-	int	a_move;
-	int	b_move;
-	int	min_index;
-	int	*lis;
-	int	c;
+	int		i;
+	int		j;
+	int		total;
+	int		a_up;
+	int		a_down;
+	int		b_up;
+	int		b_down;
+	int		a_move;
+	int		b_move;
+	int		min_index;
+	int		c;
+	t_array	*arr;
+	char	**argv;
 }		t_instructs;
 
 t_stack		*create_stack(int capacity);
@@ -57,12 +61,13 @@ void		operation_ra_rb(t_stack *stack, char *op_name);
 void		operation_rra_rrb(t_stack *stack, char *op_name);
 void		ft_exit_error(void);
 void		push_args_to_array(t_array *arr, char **arg, int argc);
-int			*ft_lis(int *arr, int n);
-int			*insert_lis(int *arr, int len);
+void		ft_lis(t_array *arr, int n);
+void		insert_lis(t_array *arr, int len);
 int			get_max(int *lis, int len);
 int			check_element_existence(int *arr, int element, int len);
 int			is_sorted(t_stack *a);
-void		start_sorting(t_stack *a, t_stack *b, t_instructs *inst);
+void		start_sorting(t_stack *a, t_stack *b,
+				t_instructs *inst, t_array *arr);
 void		init_instructs(t_stack *a, t_stack *b, t_instructs *inst);
 void		get_min_index(t_stack *a, t_instructs *inst);
 void		sort_stack(t_stack *a, t_instructs *inst);
@@ -70,5 +75,10 @@ int			get_total(int aup, int adown, int bup, int bdown);
 void		set_stack_b(t_stack *b, int up, int down);
 void		set_stack_a(t_stack *a, int up, int down);
 void		scan_stack_b(t_stack *a, t_stack *b, t_instructs *inst);
+int			count_args(char **arg);
+void		init_algo_data(t_stack *a, t_stack *b, t_array *arr, int len);
+void		init_stacks(t_stack *a, t_array *arr, char **argv, char argc);
+void		free_memory(t_stack *a, t_stack *b, t_array *arr);
+void		free_split(char **argv, int argc);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 19:23:38 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/12 19:39:31 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/13 20:01:25 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,32 @@ void	set_stack_b(t_stack *b, int up, int down)
 
 void	scan_stack_b(t_stack *a, t_stack *b, t_instructs *inst)
 {
-	int	i;
-	int	j;
-
-	j = a->top + 1;
+	inst->j = a->top + 1;
 	init_instructs(a, b, inst);
-	while (--j > 0)
+	while (--inst->j > 0)
 	{
-		i = b->top + 1;
-		while (--i > -1)
+		inst->i = b->top + 1;
+		while (--inst->i > -1)
 		{
-			if (b->array[i] > a->array[j] && b->array[i]
-				< a->array[j - 1])
+			if (b->array[inst->i] > a->array[inst->j] && b->array[inst->i]
+				< a->array[inst->j - 1])
 			{
-				if (get_total(a->top - j + 1, j, b->top - i, i + 1)
-					< inst->total)
+				if (get_total(a->top - inst->j + 1, inst->j, b->top
+						- inst->i, inst->i + 1) < inst->total)
 				{
-					inst->a_up = a->top - j + 1;
-					inst->a_down = j;
-					inst->b_up = b->top - i;
-					inst->b_down = i + 1;
-					inst->total
-						= get_total(a->top - j + 1, j, b->top - i, i + 1);
+					inst->a_up = a->top - inst->j + 1;
+					inst->a_down = inst->j;
+					inst->b_up = b->top - inst->i;
+					inst->b_down = inst->i + 1;
+					inst->total = get_total(a->top - inst->j + 1, inst->j,
+							b->top - inst->i, inst->i + 1);
 				}
 			}
 		}
 	}
 }
 
-void	start_sorting(t_stack *a, t_stack *b, t_instructs *inst)
+void	start_sorting(t_stack *a, t_stack *b, t_instructs *inst, t_array *arr)
 {
 	while (b->top > -1)
 	{
@@ -88,4 +85,5 @@ void	start_sorting(t_stack *a, t_stack *b, t_instructs *inst)
 		}
 	}
 	sort_stack(a, inst);
+	free_memory(a, b, arr);
 }

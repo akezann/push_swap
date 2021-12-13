@@ -6,7 +6,7 @@
 /*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:50:22 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/12 22:06:59 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:10:05 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,54 +28,49 @@ int	get_max(int *lis, int len)
 	return (max);
 }
 
-int	*ft_lis(int *arr, int len)
+void	ft_lis(t_array *arr, int len)
 {
-	int	*lis;
 	int	i;
 	int	j;
 
-	lis = malloc(len * sizeof(int));
-	lis[0] = 1;
+	arr->lis = malloc(len * sizeof(int));
+	arr->lis[0] = 1;
 	i = 0;
 	while (++i < len)
 	{
-		lis[i] = 1;
+		arr->lis[i] = 1;
 		j = -1;
 		while (++j < i)
 		{
-			if (arr[i] > arr[j] && lis[i] < lis[j] + 1)
+			if (arr->array[i] > arr->array[j] && arr->lis[i] < arr->lis[j] + 1)
 			{
-				lis[i] = lis[j] + 1;
+				arr->lis[i] = arr->lis[j] + 1;
 			}
 		}
 	}
-	return (lis);
 }
 
-int	*insert_lis(int *arr, int len)
+void	insert_lis(t_array *arr, int len)
 {
-	int	*lis;
 	int	max;
-	int	*lis_content;
 	int	i;
 	int	j;
 	int	k;
 
-	lis = ft_lis(arr, len);
-	max = get_max(lis, len);
-	lis_content = malloc(sizeof(int) * max);
+	ft_lis(arr, len);
+	max = get_max(arr->lis, len);
+	arr->lis_content = malloc(sizeof(int) * max);
 	i = len - 1;
 	j = 0;
 	k = max;
 	while (i > -1)
 	{
-		if (lis[i] == k)
+		if (arr->lis[i] == k)
 		{
-			lis_content[j++] = arr[i];
+			arr->lis_content[j++] = arr->array[i];
 			k--;
 		}
 		i--;
 	}
-	free(lis);
-	return (lis_content);
+	free(arr->array);
 }

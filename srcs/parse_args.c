@@ -6,7 +6,7 @@
 /*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:50:07 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/12 21:50:08 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/13 20:35:53 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	push_args_to_stack(t_stack *s, char **arg, int argc)
 	int	i;
 
 	i = argc - 1;
-	while (i > 0)
+	while (i > -1)
 	{
 		if (arg[i])
 			s_push(s, ft_atoi(arg[i]));
@@ -74,7 +74,7 @@ void	push_args_to_array(t_array *arr, char **arg, int argc)
 
 	i = 1;
 	j = 0;
-	arr->array = malloc(sizeof(int) * argc - 1);
+	arr->array = malloc(sizeof(int) * argc);
 	while (i < argc)
 	{
 		if (arg[i])

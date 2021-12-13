@@ -6,11 +6,21 @@
 /*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:49:40 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/12 22:05:58 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/13 20:50:34 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/push_swap.h"
+
+void	free_memory(t_stack *a, t_stack *b, t_array *arr)
+{
+	free(arr->lis_content);
+	free(arr->lis);
+	free(a->array);
+	free(b->array);
+	free(a);
+	free(b);
+}
 
 t_stack	*create_stack(int capacity)
 {
@@ -49,31 +59,26 @@ int	main(int argc, char **argv)
 	t_instructs	inst;
 	t_array		arr;
 
-	a = create_stack(argc - 1);
-	b = create_stack(argc - 1);
-	push_args_to_stack(a, argv, argc);
-	push_args_to_array(&arr, argv, argc);
-	arr.lis_content = insert_lis(arr.array, argc - 1);
-	inst.lis = ft_lis(arr.array, argc - 1);
-	if (is_sorted(a))
-		return (0);
-	inst.c = a->top;
-	while (inst.c > -1)
+	if (argc == 2)
 	{
-		if (check_element_existence(arr.lis_content, a->array[a->top],
-				get_max(inst.lis, argc -1)))
-			operation_ra_rb(a, "ra");
-		else
-			operation_pa_pb(a, b, "pb");
-		inst.c--;
+		inst.argv = ft_split(argv[1], " ");
+		a = create_stack(count_args(inst.argv));
+		b = create_stack(count_args(inst.argv));
+		push_args_to_stack(a, inst.argv, count_args(inst.argv));
+		push_args_to_array(&arr, inst.argv, count_args(inst.argv));
+		insert_lis(&arr, count_args(inst.argv));
+		init_algo_data(a, b, &arr, count_args(inst.argv) + 1);
 	}
-	start_sorting(a, b, &inst);
-	free(a);
-	free(b);
-	free(arr.lis_content);
-	free(inst.lis);
-	free(arr.array);
-	free(a->array);
-	free(b->array);
+	else
+	{
+		a = create_stack(argc - 1);
+		b = create_stack(argc - 1);
+		push_args_to_stack(a, argv, argc);
+		push_args_to_array(&arr, argv, argc);
+		insert_lis(&arr, argc);
+		init_algo_data(a, b, &arr, argc);
+	}
+	start_sorting(a, b, &inst, &arr);
+	free_split(inst.argv, argc);
 	return (0);
 }
