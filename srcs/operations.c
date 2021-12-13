@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 19:59:49 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/12 20:04:15 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/13 00:52:11 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,43 +54,39 @@ void	operation_pa_pb(t_stack *stack_a, t_stack *stack_b, char *op_name)
 
 void	operation_ra_rb(t_stack *stack, char *op_name)
 {
-	t_stack	*tmp_stack;
+	int	*save_stack;
+	int	i;
+	int	j;
 
-	tmp_stack = create_stack(stack->capacity);
+	save_stack = malloc(stack->capacity * sizeof(int));
+	i = stack->top;
+	j = 0;
 	while (stack->top > -1)
-	{
-		s_push(tmp_stack, stack->array[stack->top]);
-		stack->top--;
-	}
-	s_push(stack, tmp_stack->array[0]);
-	while (tmp_stack->top > 0)
-	{
-		s_push(stack, tmp_stack->array[tmp_stack->top]);
-		tmp_stack->top--;
-	}
+		save_stack[j++] = stack->array[stack->top--];
+	s_push(stack, save_stack[0]);
+	while (i > 0)
+		s_push(stack, save_stack[i--]);
 	printf("%s\n", op_name);
-	free(tmp_stack);
+	free(save_stack);
 }
 
 void	operation_rra_rrb(t_stack *stack, char *op_name)
 {
-	t_stack		*tmp_stack;
-	int			tmp;
+	int	*save_stack;
+	int tmp;
+	int	i;
+	int	j;
 
-	tmp_stack = create_stack(stack->capacity);
+	save_stack = malloc(stack->capacity * sizeof(int));
+	i = stack->top;
+	j = 0;
 	while (stack->top > -1)
-	{
-		s_push(tmp_stack, stack->array[stack->top]);
-		stack->top--;
-	}
-	tmp = tmp_stack->array[tmp_stack->top];
-	tmp_stack->top--;
-	while (tmp_stack->top > -1)
-	{
-		s_push(stack, tmp_stack->array[tmp_stack->top]);
-		tmp_stack->top--;
-	}
+		save_stack[j++] = stack->array[stack->top--];
+	tmp = save_stack[j];
+	i--;
+	while (i > -1)
+		s_push(stack, save_stack[i--]);
 	s_push(stack, tmp);
 	printf("%s\n", op_name);
-	free(tmp_stack);
+	free(save_stack);
 }
