@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 20:08:23 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/13 20:35:28 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/14 00:36:37 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,13 @@ int	count_args(char **arg)
 	return (i);
 }
 
-void	free_split(char **argv, int argc)
+void	free_split(char **argv)
 {
 	int	i;
 
 	i = 0;
-	if (argc == 2)
-	{
-		while (argv[i])
-			free(argv[i++]);
-		free(argv);
-	}
-	return ;
+	while (argv[i])
+		free(argv[i++]);
+	free(argv);
+	//return (0);
 }

@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 19:23:38 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/13 20:01:25 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/14 01:22:07 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/push_swap.h"
+
+void	sort_small_stack(t_stack *a, t_stack *b)
+{
+	
+}
 
 void	set_stack_a(t_stack *a, int up, int down)
 {
@@ -65,7 +70,7 @@ void	scan_stack_b(t_stack *a, t_stack *b, t_instructs *inst)
 	}
 }
 
-void	start_sorting(t_stack *a, t_stack *b, t_instructs *inst, t_array *arr)
+void	start_sorting(t_stack *a, t_stack *b, t_instructs *inst)
 {
 	while (b->top > -1)
 	{
@@ -85,5 +90,4 @@ void	start_sorting(t_stack *a, t_stack *b, t_instructs *inst, t_array *arr)
 		}
 	}
 	sort_stack(a, inst);
-	free_memory(a, b, arr);
 }

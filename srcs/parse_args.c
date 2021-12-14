@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:50:07 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/13 20:35:53 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/14 00:10:03 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	push_args_to_array(t_array *arr, char **arg, int argc)
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	j = 0;
 	arr->array = malloc(sizeof(int) * argc);
 	while (i < argc)

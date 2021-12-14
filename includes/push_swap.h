@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:49:53 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/13 20:48:42 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/14 00:36:42 by ak1337           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_instructs
 	int		b_move;
 	int		min_index;
 	int		c;
-	t_array	*arr;
+	int		check_argc;
 	char	**argv;
 }		t_instructs;
 
@@ -66,8 +66,7 @@ void		insert_lis(t_array *arr, int len);
 int			get_max(int *lis, int len);
 int			check_element_existence(int *arr, int element, int len);
 int			is_sorted(t_stack *a);
-void		start_sorting(t_stack *a, t_stack *b,
-				t_instructs *inst, t_array *arr);
+void		start_sorting(t_stack *a, t_stack *b, t_instructs *inst);
 void		init_instructs(t_stack *a, t_stack *b, t_instructs *inst);
 void		get_min_index(t_stack *a, t_instructs *inst);
 void		sort_stack(t_stack *a, t_instructs *inst);
@@ -79,6 +78,6 @@ int			count_args(char **arg);
 void		init_algo_data(t_stack *a, t_stack *b, t_array *arr, int len);
 void		init_stacks(t_stack *a, t_array *arr, char **argv, char argc);
 void		free_memory(t_stack *a, t_stack *b, t_array *arr);
-void		free_split(char **argv, int argc);
+void		free_split(char **argv);
 
 #endif
