@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 20:08:23 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/14 00:36:37 by ak1337           ###   ########.fr       */
+/*   Updated: 2021/12/14 19:14:29 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,6 @@ int	is_sorted(t_stack *a)
 	return (1);
 }
 
-int	count_args(char **arg)
-{
-	int	i;
-
-	i = 0;
-	while (arg[i])
-		i++;
-	return (i);
-}
-
 void	free_split(char **argv)
 {
 	int	i;
@@ -73,5 +63,5 @@ void	free_split(char **argv)
 	while (argv[i])
 		free(argv[i++]);
 	free(argv);
-	//return (0);
+	return ;
 }

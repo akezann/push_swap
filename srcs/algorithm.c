@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 19:23:38 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/14 01:22:07 by ak1337           ###   ########.fr       */
+/*   Updated: 2021/12/14 15:00:56 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/push_swap.h"
-
-void	sort_small_stack(t_stack *a, t_stack *b)
-{
-	
-}
 
 void	set_stack_a(t_stack *a, int up, int down)
 {

@@ -6,7 +6,7 @@
 /*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 19:38:41 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/13 19:54:13 by akezanna         ###   ########.fr       */
+/*   Updated: 2021/12/14 18:40:34 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,25 +75,29 @@ int	get_total(int aup, int adown, int bup, int bdown)
 
 void	init_algo_data(t_stack *a, t_stack *b, t_array *arr, int len)
 {
-	int	c;
+	int			c;
+	t_instructs	inst;
 
 	if (is_sorted(a))
 		return ;
+	if (a->top < 3)
+	{
+		sort_stack_three(a);
+		return ;
+	}
+	if (a->top < 5)
+	{
+		sort_stack_five(a, b, &inst);
+		return ;
+	}
 	c = a->top;
 	while (c > -1)
 	{
 		if (check_element_existence(arr->lis_content, a->array[a->top],
-				get_max(arr->lis, len -1)))
+				get_max(arr->lis, len)))
 			operation_ra_rb(a, "ra");
 		else
 			operation_pa_pb(a, b, "pb");
 		c--;
 	}
-}
-
-void	init_stacks(t_stack *a, t_array *arr, char **argv, char argc)
-{
-	push_args_to_stack(a, argv, argc);
-	push_args_to_array(arr, argv, argc);
-	insert_lis(arr, argc);
 }

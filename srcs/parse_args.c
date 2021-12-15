@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:50:07 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/14 00:10:03 by ak1337           ###   ########.fr       */
+/*   Updated: 2021/12/14 19:01:32 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	parse_args(char **ar, int argc)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	while (ar[i] && i < argc)
 	{
 		if (!check_dig_arg(ar[i])
@@ -74,6 +74,7 @@ void	push_args_to_array(t_array *arr, char **arg, int argc)
 
 	i = 0;
 	j = 0;
+	parse_args(arg, argc);
 	arr->array = malloc(sizeof(int) * argc);
 	while (i < argc)
 	{
@@ -83,4 +84,5 @@ void	push_args_to_array(t_array *arr, char **arg, int argc)
 			ft_exit_error();
 		i++;
 	}
+	check_for_duplicate(arr->array, argc);
 }

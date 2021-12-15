@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 19:59:49 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/13 23:04:27 by ak1337           ###   ########.fr       */
+/*   Updated: 2021/12/14 16:17:40 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	operation_sa_sb(t_stack *stack, char *op_name)
 		stack->array[stack->top] = stack->array[stack->top - 1];
 		stack->array[stack->top - 1] = tmp;
 	}
-	printf("%s\n", op_name);
+	ft_putstr_fd(op_name, 1);
+	ft_putstr_fd("\n", 1);
 }
 
 void	operation_pa_pb(t_stack *stack_a, t_stack *stack_b, char *op_name)
@@ -49,7 +50,8 @@ void	operation_pa_pb(t_stack *stack_a, t_stack *stack_b, char *op_name)
 			s_pop(stack_a);
 		}
 	}
-	printf("%s\n", op_name);
+	ft_putstr_fd(op_name, 1);
+	ft_putstr_fd("\n", 1);
 }
 
 void	operation_ra_rb(t_stack *stack, char *op_name)
@@ -73,7 +75,8 @@ void	operation_ra_rb(t_stack *stack, char *op_name)
 		s_push(stack, save_stack[i]);
 		i--;
 	}
-	printf("%s\n", op_name);
+	ft_putstr_fd(op_name, 1);
+	ft_putstr_fd("\n", 1);
 	free(save_stack);
 }
 
@@ -97,11 +100,9 @@ void	operation_rra_rrb(t_stack *stack, char *op_name)
 	tmp = save_stack[j];
 	j--;
 	while (j > -1)
-	{
-		s_push(stack, save_stack[j]);
-		j--;
-	}
+		s_push(stack, save_stack[j--]);
 	s_push(stack, tmp);
-	printf("%s\n", op_name);
+	ft_putstr_fd(op_name, 1);
+	ft_putstr_fd("\n", 1);
 	free(save_stack);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:49:40 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/14 00:59:45 by ak1337           ###   ########.fr       */
+/*   Updated: 2021/12/14 19:04:19 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,16 @@ int	main(int argc, char **argv)
 	t_stack		*b;
 	t_instructs	inst;
 	t_array		arr;
-	
-	inst.argv = ft_split(argv[1], " ");
-	if (argc == 2)
-	{
-		argc = count_args(inst.argv);
-		argv = inst.argv;
-		a = create_stack(argc);
-		b = create_stack(argc);
-	}
-	else
-	{
-		a = create_stack(argc - 1);
-		b = create_stack(argc - 1);
-	}
-	push_args_to_stack(a, argv, argc);
-	push_args_to_array(&arr, argv, argc);
+
+	inst.argv = get_argv_split(argv, &argc);
+	a = create_stack(argc);
+	b = create_stack(argc);
+	push_args_to_stack(a, inst.argv, argc);
+	push_args_to_array(&arr, inst.argv, argc);
 	insert_lis(&arr, argc);
 	init_algo_data(a, b, &arr, argc);
 	start_sorting(a, b, &inst);
 	free_memory(a, b, &arr);
 	free_split(inst.argv);
+	return (0);
 }

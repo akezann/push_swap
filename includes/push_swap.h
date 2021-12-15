@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ak1337 <ak1337@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akezanna <akezanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:49:53 by akezanna          #+#    #+#             */
-/*   Updated: 2021/12/14 00:36:42 by ak1337           ###   ########.fr       */
+/*   Updated: 2021/12/14 19:15:40 by akezanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <limits.h>
 # include "./../libft/libft.h"
 
 typedef struct s_stack
@@ -50,6 +48,8 @@ typedef struct s_instructs
 }		t_instructs;
 
 t_stack		*create_stack(int capacity);
+void		sort_stack_three(t_stack *a);
+void		sort_stack_five(t_stack *a, t_stack *b, t_instructs *inst);
 void		s_push(t_stack *stack, int value);
 void		s_pop(t_stack *stack);
 void		parse_args(char **ar, int argc);
@@ -74,10 +74,10 @@ int			get_total(int aup, int adown, int bup, int bdown);
 void		set_stack_b(t_stack *b, int up, int down);
 void		set_stack_a(t_stack *a, int up, int down);
 void		scan_stack_b(t_stack *a, t_stack *b, t_instructs *inst);
-int			count_args(char **arg);
 void		init_algo_data(t_stack *a, t_stack *b, t_array *arr, int len);
-void		init_stacks(t_stack *a, t_array *arr, char **argv, char argc);
 void		free_memory(t_stack *a, t_stack *b, t_array *arr);
 void		free_split(char **argv);
+char		**get_argv_split(char **argv, int *argc);
+void		check_for_duplicate(int	*array, int len);
 
 #endif
